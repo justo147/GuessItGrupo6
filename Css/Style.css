@@ -1,0 +1,49 @@
+body {
+background-color: rgb(255, 255, 255);
+padding: 10px;
+width: 100%;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+}
+
+header{
+    background-color: #44a04c;
+    padding: 5px;
+    border-radius: 10px;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 50px;
+    background-color: rgba(48, 156, 93,0.1);
+}
+
+input {
+    padding: 5px;
+    width: 170px;
+}
+
+.theButton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#box{
+    
+    background-color: rgba(48, 156, 93,0.4);
+    width: 30%;
+    height: 380px;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+#box h3  {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
