@@ -1,49 +1,28 @@
+/* Reset y base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-background-color: rgb(255, 255, 255);
-padding: 10px;
-width: 100%;
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
 }
 
-header{
-    background-color: #44a04c;
-    padding: 5px;
-    border-radius: 10px;
+/* Contenedor principal */
+#box {
+    background-color: white;
     width: 100%;
-    height: 30px;
-    margin-bottom: 50px;
-    background-color: rgba(48, 156, 93,0.1);
+    max-width: 450px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
-input {
-    padding: 5px;
-    width: 170px;
-}
-
-.theButton{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#box{
-    
-    background-color: rgba(48, 156, 93,0.4);
-    width: 30%;
-    height: 380px;
-    padding: 15px;
-    border-radius: 15px;
-}
-
-#box h3  {
-    text-align: center;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+/* Continuaremos con los estilos específicos... */

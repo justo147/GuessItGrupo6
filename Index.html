@@ -1,27 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="Css/Style.css">
-    <script src="Js/Script.js"></script>
+    <!-- Configuración básica del documento -->
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace la página responsive -->
+    <title>Adivina el Número</title> <!-- Título que aparece en la pestaña del navegador -->
+    <link rel="stylesheet" href="Css/Style.css"> <!-- Enlaza el archivo CSS de estilos -->
 </head>
-
 <body>
-     <div id="box">
-        <form >
-            <div >
-                <label for="guess">Tu número:</label>
-                <input type="text" id="guess" name="guess" placeholder="Introduce un número" required>
+    <!-- Contenedor principal del juego -->
+    <div id="box">
+        <!-- Título principal del juego -->
+        <h1>Adivina el Número</h1>
+        <!-- Subtítulo con instrucciones -->
+        <p class="subtitle">Encuentra el número entre 1 y 100</p>
+        
+        <!-- Panel de información con estadísticas -->
+        <div class="info-panel">
+            <!-- Caja que muestra el contador de intentos -->
+            <div class="info-box">
+                <h3>Intentos</h3> <!-- Título de la caja -->
+                <p id="attemptCount">0</p> <!-- Contador que se actualizará con JavaScript -->
             </div>
-            <input type="submit" value="Adivinar" class="theButton">
+            <!-- Caja que muestra el rango de números -->
+            <div class="info-box">
+                <h3>Rango</h3> <!-- Título de la caja -->
+                <p>1 - 100</p> <!-- Rango fijo del juego -->
+            </div>
+        </div>
+
+        <!-- Formulario para que el usuario ingrese su guess -->
+        <form id="guessForm">
+            <div class="input-group">
+                <!-- Etiqueta del campo de entrada -->
+                <label for="guess">Introduce tu número:</label>
+                <!-- Campo de entrada para el número -->
+                <input type="number" id="guess" name="guess" min="1" max="100" 
+                       placeholder="Número del 1 al 100" required autofocus>
+                <!-- 
+                  type="number" - Solo permite números
+                  min="1" max="100" - Limita el rango de números
+                  placeholder - Texto de ejemplo
+                  required - Hace el campo obligatorio
+                  autofocus - Pone el foco automáticamente en este campo
+                -->
+            </div>
+            <!-- Botón para enviar el guess -->
+            <button type="submit" class="theButton">Adivinar</button>
         </form>
         
+        <!-- Div donde se mostrarán los resultados y pistas -->
         <div id="result"></div>
-        
+        <!-- Div donde se mostrará el historial de intentos -->
+        <div id="attemptsList"></div>
     </div>
-</body>
 
+    <!-- Enlace al archivo JavaScript que contiene la lógica del juego -->
+    <!-- Se coloca al final para que cargue después del HTML -->
+    <script src="Js/Script.js"></script>
+</body>
 </html>
