@@ -13,6 +13,24 @@ body {
     align-items: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 20px;
+
+/* Animacion de entrada a la pagina */
+    mask-image: url(/Assets/svg/question-mark-sign-svgrepo-com.svg); /* link del svg */
+    mask-position: center; /* posicion centrada*/
+    mask-repeat: no-repeat; /* */
+    mask-size: 50px; /* tamaño pequeño al entrar*/
+
+    animation: lock-reveal 3s forwards ease-in-out; /* la animacion dura 3 seg */
+}
+
+@keyframes lock-reveal {
+    0% {
+        mask-size: 50px; /* empieza en valor inicial*/
+    }
+
+    100% {
+        mask-size: 1000vh; /* termina siendo tan grande que desaparece */
+    }
 }
 
 /* Contenedor principal */
