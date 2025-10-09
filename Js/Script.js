@@ -62,6 +62,7 @@ function evaluateGuess(num) {
     attempts.push(num);
 
     if (num < numRand) {
+        box.className="error";
         resultDiv.innerHTML = ` El número es <strong>MAYOR</strong> que ${num}`;
     } else if (num > numRand) {
         resultDiv.innerHTML = ` El número es <strong>MENOR</strong> que ${num}`;

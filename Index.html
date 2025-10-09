@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <!-- Configuración básica del documento -->
     <meta charset="UTF-8"> <!-- Define la codificación de caracteres -->
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="Css/Style.css"> <!-- Enlaza el archivo CSS de estilos -->
 
 </head>
+
 <body>
     <!--Libreria del confeti-->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
@@ -17,18 +19,22 @@
         <h1>Adivina el Número</h1>
         <!-- Subtítulo con instrucciones -->
         <p class="subtitle">Encuentra el número entre 1 y 100</p>
-        
+
         <!-- Panel de información con estadísticas -->
         <div class="info-panel">
             <!-- Caja que muestra el contador de intentos -->
             <div class="info-box">
-                <h3>Intentos</h3> <!-- Título de la caja -->
-                <p id="attemptCount">0</p> <!-- Contador que se actualizará con JavaScript -->
+                <div class="try-range">
+                    <h3>Intentos</h3> <!-- Título de la caja -->
+                    <p id="attemptCount">0</p>
+                </div> <!-- Contador que se actualizará con JavaScript -->
             </div>
             <!-- Caja que muestra el rango de números -->
             <div class="info-box">
-                <h3>Rango</h3> <!-- Título de la caja -->
-                <p>1 - 100</p> <!-- Rango fijo del juego -->
+                <div class="try-range">
+                    <h3>Rango</h3> <!-- Título de la caja -->
+                    <p>1 - 100</p> <!-- Rango fijo del juego -->
+                </div>
             </div>
         </div>
 
@@ -38,8 +44,8 @@
                 <!-- Etiqueta del campo de entrada -->
                 <label for="guess">Introduce tu número:</label>
                 <!-- Campo de entrada para el número -->
-                <input type="number" id="guess" name="guess" min="1" max="100" 
-                       placeholder="Número del 1 al 100" required autofocus>
+                <input type="number" id="guess" name="guess" min="1" max="100" placeholder="Número del 1 al 100"
+                    required autofocus>
                 <!-- 
                   type="number" - Solo permite números
                   min="1" max="100" - Limita el rango de números
@@ -49,9 +55,23 @@
                 -->
             </div>
             <!-- Botón para enviar el guess -->
-            <button type="submit" id="confeti" class="theButton">Adivinar</button>
+            
+            <div id="contentBox">
+                <div id="tenth" class="buttonBox">
+                    <button type="submit">
+                        <span>A</span>
+                        <span>d</span>
+                        <span>i</span>
+                        <span>v</span>
+                        <span>i</span>
+                        <span>n</span>
+                        <span>a</span>
+                        <span>r</span>
+                    </button>
+                </div>
+            </div>
         </form>
-        
+
         <!-- Div donde se mostrarán los resultados y pistas -->
         <div id="result"></div>
         <!-- Div donde se mostrará el historial de intentos -->
@@ -62,4 +82,5 @@
     <!-- Se coloca al final para que cargue después del HTML -->
     <script src="Js/Script.js"></script>
 </body>
+
 </html>
