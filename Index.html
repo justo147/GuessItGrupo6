@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace la página responsive -->
     <title>Adivina el Número</title> <!-- Título que aparece en la pestaña del navegador -->
     <link rel="stylesheet" href="Css/Style.css"> <!-- Enlaza el archivo CSS de estilos -->
+
 </head>
 <body>
+    <!--Libreria del confeti-->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <!-- Contenedor principal del juego -->
     <div id="box">
         <!-- Título principal del juego -->
@@ -46,7 +49,7 @@
                 -->
             </div>
             <!-- Botón para enviar el guess -->
-            <button type="submit" class="theButton">Adivinar</button>
+            <button type="submit" id="confeti" class="theButton">Adivinar</button>
         </form>
         
         <!-- Div donde se mostrarán los resultados y pistas -->
