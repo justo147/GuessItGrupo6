@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <!-- Configuración básica del documento -->
     <meta charset="UTF-8"> <!-- Define la codificación de caracteres -->
@@ -7,6 +8,7 @@
     <title>Adivina el Número</title> <!-- Título que aparece en la pestaña del navegador -->
     <link rel="stylesheet" href="Css/Style.css"> <!-- Enlaza el archivo CSS de estilos -->
 </head>
+
 <body>
     <!-- Contenedor principal del juego -->
     <div id="box">
@@ -14,7 +16,7 @@
         <h1>Adivina el Número</h1>
         <!-- Subtítulo con instrucciones -->
         <p class="subtitle">Encuentra el número entre 1 y 100</p>
-        
+
         <!-- Panel de información con estadísticas -->
         <div class="info-panel">
             <!-- Caja que muestra el contador de intentos -->
@@ -35,8 +37,8 @@
                 <!-- Etiqueta del campo de entrada -->
                 <label for="guess">Introduce tu número:</label>
                 <!-- Campo de entrada para el número -->
-                <input type="number" id="guess" name="guess" min="1" max="100" 
-                       placeholder="Número del 1 al 100" required autofocus>
+                <input type="number" id="guess" name="guess" min="1" max="100" placeholder="Número del 1 al 100"
+                    required autofocus>
                 <!-- 
                   type="number" - Solo permite números
                   min="1" max="100" - Limita el rango de números
@@ -46,9 +48,22 @@
                 -->
             </div>
             <!-- Botón para enviar el guess -->
-            <button type="submit" class="theButton">Adivinar</button>
+            <div id="contentBox">
+                <div id="tenth" class="buttonBox">
+                    <button type="submit">
+                        <span>A</span>
+                        <span>d</span>
+                        <span>i</span>
+                        <span>v</span>
+                        <span>i</span>
+                        <span>n</span>
+                        <span>a</span>
+                        <span>r</span>
+                    </button>
+                </div>
+            </div>
         </form>
-        
+
         <!-- Div donde se mostrarán los resultados y pistas -->
         <div id="result"></div>
         <!-- Div donde se mostrará el historial de intentos -->
@@ -59,4 +74,5 @@
     <!-- Se coloca al final para que cargue después del HTML -->
     <script src="Js/Script.js"></script>
 </body>
+
 </html>
