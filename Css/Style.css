@@ -383,3 +383,19 @@ textarea {
   -moz-appearance: textfield;
   appearance: textfield;
 }
+
+
+#result {
+  display: none; /* Oculto al inicio */
+  margin: 10px auto;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #d1b6f079;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  line-height: 1.5;
+  text-align: center;
+  transition: all 0.5s ease-in-out; /* Suaviza aparición */
+}
+
+

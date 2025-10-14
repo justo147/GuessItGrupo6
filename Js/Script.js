@@ -43,6 +43,7 @@ let attempts = [];
 const form = document.getElementById('guessForm');
 const guessInput = document.getElementById('guess');
 const resultDiv = document.getElementById('result');
+        resultDiv.style.display = "none";
 const attemptCountEl = document.getElementById('attemptCount');
 const box = document.getElementById('box');
 const attemptsListDiv = document.getElementById('attemptsList');
@@ -62,19 +63,21 @@ function evaluateGuess(num) {
     attempts.push(num);
 
     if (num < numRand) {
-        box.className="error";
-        resultDiv.innerHTML = ` El número es <strong>MAYOR</strong> que ${num}`;
+        box.className = "error";
+        resultDiv.style.display = "block"; // Muestra el cuadro
+        resultDiv.innerHTML = `El número es <strong>MAYOR</strong> que ${num}`;
     } else if (num > numRand) {
-        resultDiv.innerHTML = ` El número es <strong>MENOR</strong> que ${num}`;
+        box.className = "error";
+        resultDiv.style.display = "block"; // Muestra el cuadro
+        resultDiv.innerHTML = `El número es <strong>MENOR</strong> que ${num}`;
     } else {
         gameOver = true;
-        resultDiv.innerHTML = ` ¡FELICIDADES! Adivinaste el número ${numRand}`;
-
-        //Lanza confetti cuando se adivina el número
+        resultDiv.style.display = "block"; // Lo muestra SOLO al acertar
+        resultDiv.innerHTML = `🎉 ¡FELICIDADES! Adivinaste el número ${numRand}`;
         lanzarConfeti();
-
     }
 }
+
 
 // Event listeners
 form.addEventListener('submit', function (e) {
@@ -94,6 +97,7 @@ form.addEventListener('submit', function (e) {
 
 // Función para reiniciar el juego
 function resetGame() {
+    resultDiv.style.display = "none";
     // Lógica de reinicio aquí...
 }
 
