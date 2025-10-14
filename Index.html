@@ -42,10 +42,12 @@
         <form id="guessForm">
             <div class="input-group">
                 <!-- Etiqueta del campo de entrada -->
-                <label for="guess">Introduce tu número:</label>
+                <label for="guess" class="label-moderno">
+                    <span class="label-text">INTRODUCE TU NÚMERO</span>
+                    <span class="label-subtext">Número del 1 al 100</span>
+                </label>
                 <!-- Campo de entrada para el número -->
-                <input type="number" id="guess" name="guess" min="1" max="100" placeholder="Número del 1 al 100"
-                    required autofocus>
+                <input type="number" id="input-sin-flechas" name="guess" min="1" max="100" required autofocus>
                 <!-- 
                   type="number" - Solo permite números
                   min="1" max="100" - Limita el rango de números
@@ -55,7 +57,8 @@
                 -->
             </div>
             <!-- Botón para enviar el guess -->
-            
+            <br>
+            <br>
             <div id="contentBox">
                 <div id="tenth" class="buttonBox">
                     <button type="submit">

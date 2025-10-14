@@ -1,214 +1,385 @@
 /* Reset y base */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
+/* body con animacion entrada y fondo cambiante*/
 body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 20px;
+  background: linear-gradient(-45deg, #ff0080, #8000ff, #00ff80, #ff8000);
+  background-size: 400% 400%;
+  animation: 
+    gradient 15s ease infinite,
+    lock-reveal 3s forwards ease-in-out;
+  
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
 
-/* Animacion de entrada a la pagina */
-    mask-image: url(/Assets/svg/question-mark-sign-svgrepo-com.svg); /* link del svg */
-    mask-position: center; /* posicion centrada*/
-    mask-repeat: no-repeat; /* aparece solo un logo */
-    mask-size: 50px; /* tamaño pequeño al entrar*/
-
-    animation: lock-reveal 3s forwards ease-in-out; /* la animacion dura 3 seg */ 
+  mask-image: url(/Assets/svg/question-mark-sign-svgrepo-com.svg);
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: 50px;
 }
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 
 @keyframes lock-reveal {
-    0% {
-        mask-size: 50px; /* empieza en valor inicial*/
-    }
+  0% {
+    mask-size: 50px;
+    /* empieza en valor inicial*/
+  }
 
-    100% {
-        mask-size: 1000vh; /* termina siendo tan grande que "desaparece" */
-    }
+  100% {
+    mask-size: 1000vh;
+    /* termina siendo tan grande que "desaparece" */
+  }
 }
 
 /* Contenedor principal */
 #box {
-    background-color: white;
-    width: 100%;
-    max-width: 450px;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  width: 100%;
+  max-width: 450px;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 
 .info-panel {
-    display: flex;              /* Usa Flexbox para colocar los elementos hijos en fila */
-    flex-wrap: wrap;            /* Permite que las cajas bajen a la siguiente línea si no hay espacio */
-    justify-content: center;    /* Centra horizontalmente las cajas dentro del contenedor */
-    align-items: center;        /* Centra verticalmente las cajas dentro del contenedor */
-    gap: 20px;                  /* Espacio de 20px entre cada caja */
-    margin-top: 30px;           /* Espacio superior del contenedor */
-    margin-bottom: 30px;        /* Espacio inferior del contenedor */
+  display: flex;
+  /* Usa Flexbox para colocar los elementos hijos en fila */
+  flex-wrap: wrap;
+  /* Permite que las cajas bajen a la siguiente línea si no hay espacio */
+  justify-content: center;
+  /* Centra horizontalmente las cajas dentro del contenedor */
+  align-items: center;
+  /* Centra verticalmente las cajas dentro del contenedor */
+  gap: 20px;
+  /* Espacio de 20px entre cada caja */
+  margin-top: 30px;
+  /* Espacio superior del contenedor */
+  margin-bottom: 30px;
+  /* Espacio inferior del contenedor */
 }
 
 .try-range {
-    margin: 10px auto;                          /* 10px de margen vertical, centrado horizontalmente */
-    padding: 16px;                              /* Espaciado interno entre contenido y bordes */
-    border: 1px solid #ccc;                   /* Borde gris claro alrededor de la caja */
-    border-radius: 8px;                         /* Bordes redondeados (8px) */
-    background: #d1b6f079;                    /* Color de fondo violeta claro con transparencia */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);  /* Sombra suave para dar sensación de relieve */
-    line-height: 1.5;                           /* Espaciado entre líneas del texto */
-    text-align: center;                         /* Centra el texto horizontalmente */
+  margin: 10px auto;
+  /* 10px de margen vertical, centrado horizontalmente */
+  padding: 16px;
+  /* Espaciado interno entre contenido y bordes */
+  border: 1px solid #ccc;
+  /* Borde gris claro alrededor de la caja */
+  border-radius: 8px;
+  /* Bordes redondeados (8px) */
+  background: #d1b6f079;
+  /* Color de fondo violeta claro con transparencia */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  /* Sombra suave para dar sensación de relieve */
+  line-height: 1.5;
+  /* Espaciado entre líneas del texto */
+  text-align: center;
+  /* Centra el texto horizontalmente */
 }
 
 .info-box {
-    flex: 1 1 150px;            /* 
+  flex: 1 1 150px;
+  /* 
                                    flex-grow: 1  → permite crecer si hay espacio
                                    flex-shrink: 1 → permite reducir su tamaño si falta espacio
                                    flex-basis: 150px → ancho base o mínimo sugerido
                                 */
-    max-width: 200px;           /* Ancho máximo de cada caja */
+  max-width: 200px;
+  /* Ancho máximo de cada caja */
 }
 
 
 /*boton*/
-#contentBox{
+#contentBox {
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-.buttonBox{
+.buttonBox {
   margin: 0 20px 40px;
-  position:relative;
+  position: relative;
   max-width: 200px;
   min-width: 150px;
   flex: 20%;
 }
 
-button{
-  width:100%;
-  height:80px;
-  position:relative;
-  background:rgba(103, 126, 234, 0.8);
-  text-transform:uppercase;
-  color:white;
-  font-weight:700;
-  letter-spacing:1px;
-  border:none;
-  font-size:15px;
-  outline:none;
+button {
+  width: 100%;
+  height: 80px;
+  position: relative;
+  background: rgba(103, 126, 234, 0.8);
+  text-transform: uppercase;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  font-size: 15px;
+  outline: none;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   cursor: pointer;
 }
 
-#tenth>button{
-  letter-spacing:1px;
+#tenth>button {
+  letter-spacing: 1px;
 }
 
-#tenth span{
-  letter-spacing:0;
-  display:inline-block;
-  position:relative;
-  width:8px;
-  transition:all .5s ease-in-out;
+#tenth span {
+  letter-spacing: 0;
+  display: inline-block;
+  position: relative;
+  width: 8px;
+  transition: all .5s ease-in-out;
 }
 
-#tenth:hover span:nth-of-type(1){
+#tenth:hover span:nth-of-type(1) {
   animation: a1 .5s;
 }
 
-#tenth:hover span:nth-of-type(2){
+#tenth:hover span:nth-of-type(2) {
   animation: d1 .5s;
 }
 
-#tenth:hover span:nth-of-type(3){
+#tenth:hover span:nth-of-type(3) {
   animation: i1 .5s;
 }
 
-#tenth:hover span:nth-of-type(4){
+#tenth:hover span:nth-of-type(4) {
   animation: v1 .5s;
 }
 
-#tenth:hover span:nth-of-type(5){
+#tenth:hover span:nth-of-type(5) {
   animation: i1 .5s;
 }
 
-#tenth:hover span:nth-of-type(7){
-  animation: n1 .5s;  /* Ahora usa n1 */
+#tenth:hover span:nth-of-type(7) {
+  animation: n1 .5s;
+  /* Ahora usa n1 */
 }
 
-#tenth:hover span:nth-of-type(8){
-  animation: a2 .5s;  /* Ahora usa a2 */
+#tenth:hover span:nth-of-type(8) {
+  animation: a2 .5s;
+  /* Ahora usa a2 */
 }
 
-#tenth:hover span:nth-of-type(9){
-  animation: r1 .5s;  /* Ahora usa r1 */
+#tenth:hover span:nth-of-type(9) {
+  animation: r1 .5s;
+  /* Ahora usa r1 */
 }
 
 /* CORREGIDO - nombres únicos para cada keyframe */
-@keyframes a1{
-  0%{transform:translate(0, 0);}
-  50%{transform:translate(50px, 5px);}
-  75%{transform:translate(5px, 5px);}
-  80%{transform:translate(0, 0);}
-  100%{transform:translate(0, 0);}
+@keyframes a1 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(50px, 5px);
+  }
+
+  75% {
+    transform: translate(5px, 5px);
+  }
+
+  80% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-@keyframes d1{
-  0%{transform:translate(0, 0);}
-  25%{transform:translate(-4px, 0);}
-  50%{transform:translate(3px, 4px);}
-  80%{transform:translate(0, 0);}
-  100%{transform:translate(0, 0);}
+@keyframes d1 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(-4px, 0);
+  }
+
+  50% {
+    transform: translate(3px, 4px);
+  }
+
+  80% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-@keyframes i1{
-  0%{transform:translate(0, 0);}
-  20%{transform:rotate(360deg);}
-  50%{transform:scale(2);}
-  80%{transform:translate(0, 0);}
-  100%{transform:translate(0, 0);}
+@keyframes i1 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: rotate(360deg);
+  }
+
+  50% {
+    transform: scale(2);
+  }
+
+  80% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-@keyframes v1{
-  0%{transform:translate(0, 0);}
-  20%{transform:translate(-10px, -2px);}
-  80%{transform:translate(0, 0);}
-  100%{transform:translate(0, 0);}
+@keyframes v1 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(-10px, -2px);
+  }
+
+  80% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-@keyframes n1{
-  0%{transform:translate(0, 0);}
-  20%{transform:translate(0, 10px);}
-  80%{transform:translate(0, 32px);}
-  100%{transform:translate(0, 0);}
+@keyframes n1 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(0, 10px);
+  }
+
+  80% {
+    transform: translate(0, 32px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-@keyframes a2{
-  0%{transform:translate(0, 0);}
-  20%{transform:translate(0, -10px);}
-  40%{transform:translate(0, 0);}
-  60%{transform:translate(0, -10px);}
-  80%{transform:translate(0, 0);}
-  100%{transform:translate(0, 0);}
+@keyframes a2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(0, -10px);
+  }
+
+  40% {
+    transform: translate(0, 0);
+  }
+
+  60% {
+    transform: translate(0, -10px);
+  }
+
+  80% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-@keyframes r1{
-  0%{transform:translate(0, 0);}
-  50%{transform:skewY(50deg);}
-  80%{transform:translate(0, 0);}
-  100%{transform:translate(0, 0);}
+@keyframes r1 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: skewY(50deg);
+  }
+
+  80% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
 @media(max-width: 1200px) {
   #contentBox {
-    width: 100%; 
+    width: 100%;
   }
 }
-/* Continuaremos con los estilos específicos... */
+
+/* Label aspecto*/
+.label-moderno {
+  display: block;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.label-text {
+  display: block;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.label-subtext {
+  display: block;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+/*Input number sin flecha*/
+input,
+textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid lighten(#667eea, 50%);
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
