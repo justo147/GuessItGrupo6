@@ -172,15 +172,14 @@ form.addEventListener('submit', function (e) {
     e.preventDefault();
     const num = parseInt(guessInput.value);
 
-    // Validación básica
-    if (isNaN(num) || num < 1 || num > 100) {
-
-        resultDiv.textContent = ' Por favor, introduce un número válido entre 1 y 100';
+    if (isNaN(num) || num < 1 || num > maxNumber) {
+        resultDiv.style.display = "block";
+        resultDiv.textContent = `Por favor, introduce un número válido entre 1 y ${maxNumber}`;
         return;
     }
 
-    // funcion para ejecutar el juego
     evaluateGuess(num);
+    guessInput.value = '';
 });
 
 // Función para reiniciar el juego
