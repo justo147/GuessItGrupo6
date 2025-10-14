@@ -32,21 +32,95 @@ function random(min, max) {
 
 
 
-//Empezamos el codigo utilizando formularios y botones
-// Variables 
-let numRand = random(1, 100);
+//Empezamos el codigo utilizando formularios y botones 
+// Variables globales
+let numRand;
 let count = 0;
 let gameOver = false;
 let attempts = [];
-
+let currentDifficulty = 'easy';
+let maxNumber = 100;
 // Elementos del DOM
+const difficultyScreen = document.getElementById('difficultyScreen');
+const gameScreen = document.getElementById('gameScreen');
+const difficultyCards = document.querySelectorAll('.difficulty-card');
+const rangeSubtitle = document.getElementById('rangeSubtitle');
+const rangeDisplay = document.getElementById('rangeDisplay');
+const inputSubtext = document.getElementById('inputSubtext');
+const backToDifficultyBtn = document.getElementById('backToDifficulty');
 const form = document.getElementById('guessForm');
 const guessInput = document.getElementById('guess');
 const resultDiv = document.getElementById('result');
-        resultDiv.style.display = "none";
 const attemptCountEl = document.getElementById('attemptCount');
 const box = document.getElementById('box');
 const attemptsListDiv = document.getElementById('attemptsList');
+
+// Inicialización
+document.addEventListener('DOMContentLoaded', function() {
+    resultDiv.style.display = "none";
+    
+    // Event listeners para las tarjetas de dificultad
+    difficultyCards.forEach(card => {
+        card.addEventListener('click', function() {
+            selectDifficulty(this.dataset.difficulty);
+        });
+    });
+    
+    // Event listener para el botón volver
+    backToDifficultyBtn.addEventListener('click', showDifficultyScreen);
+});
+
+// Función para seleccionar dificultad
+function selectDifficulty(difficulty) {
+    currentDifficulty = difficulty;
+    
+    if (difficulty === 'easy') {
+        maxNumber = 100;
+    } else {
+        maxNumber = 1000;
+    }
+    
+    // Actualizar la UI con el rango seleccionado
+    rangeSubtitle.textContent = `Encuentra el número entre 1 y ${maxNumber}`;
+    rangeDisplay.textContent = `1 - ${maxNumber}`;
+    inputSubtext.textContent = `Número del 1 al ${maxNumber}`;
+    
+    // Actualizar los atributos del input
+    guessInput.max = maxNumber;
+    guessInput.placeholder = `1-${maxNumber}`;
+    
+    // Iniciar juego
+    startGame();
+    showGameScreen();
+}
+
+// Función para iniciar el juego
+function startGame() {
+    numRand = random(1, maxNumber);
+    count = 0;
+    gameOver = false;
+    attempts = [];
+    attemptCountEl.textContent = '0';
+    resultDiv.style.display = "none";
+    resultDiv.innerHTML = '';
+    attemptsListDiv.innerHTML = '';
+    guessInput.value = '';
+    box.className = "box";
+    console.log("Número aleatorio:", numRand);
+}
+
+// Función para mostrar pantalla de juego
+function showGameScreen() {
+    difficultyScreen.classList.remove('active');
+    gameScreen.classList.add('active');
+}
+
+// Función para mostrar pantalla de dificultad
+function showDifficultyScreen() {
+    gameScreen.classList.remove('active');
+    difficultyScreen.classList.add('active');
+}
+
 
 // Función para generar número aleatorio
 function random(min, max) {

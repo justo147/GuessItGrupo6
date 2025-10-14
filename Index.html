@@ -13,72 +13,89 @@
 <body>
     <!--Libreria del confeti-->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-    <!-- Contenedor principal del juego -->
-    <div id="box">
-        <!-- Título principal del juego -->
-        <h1>Adivina el Número</h1>
-        <!-- Subtítulo con instrucciones -->
-        <p class="subtitle">Encuentra el número entre 1 y 100</p>
-
-        <!-- Panel de información con estadísticas -->
-        <div class="info-panel">
-            <!-- Caja que muestra el contador de intentos -->
-            <div class="info-box">
-                <div class="try-range">
-                    <h3>Intentos</h3> <!-- Título de la caja -->
-                    <p id="attemptCount">0</p>
-                </div> <!-- Contador que se actualizará con JavaScript -->
-            </div>
-            <!-- Caja que muestra el rango de números -->
-            <div class="info-box">
-                <div class="try-range">
-                    <h3>Rango</h3> <!-- Título de la caja -->
-                    <p>1 - 100</p> <!-- Rango fijo del juego -->
+    
+    <!-- Pantalla de Selección de Dificultad -->
+    <div id="difficultyScreen" class="screen active">
+        <div id="difficultyBox" class="box">
+            <h1>Selecciona la Dificultad</h1>
+            <p class="subtitle">Elige el modo de juego</p>
+            
+            <div class="difficulty-options">
+                <div class="difficulty-card" data-difficulty="easy">
+                    <div class="difficulty-icon">🎯</div>
+                    <h3>Fácil</h3>
+                    <p>Números del 1 al 100</p>
+                    <div class="difficulty-info">
+                        <span>Perfecto para empezar</span>
+                    </div>
+                </div>
+                
+                <div class="difficulty-card" data-difficulty="hard">
+                    <div class="difficulty-icon">🔥</div>
+                    <h3>Difícil</h3>
+                    <p>Números del 1 al 1000</p>
+                    <div class="difficulty-info">
+                        <span>Para expertos</span>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    
+     <!-- Juego Principal (oculto inicialmente) -->
+    <div id="gameScreen" class="screen">
+        <div id="box" class="box">
+            <h1>Adivina el Número</h1>
+            <p class="subtitle" id="rangeSubtitle">Encuentra el número entre 1 y 100</p>
 
-        <!-- Formulario para que el usuario ingrese su guess -->
-        <form id="guessForm">
-            <div class="input-group">
-                <!-- Etiqueta del campo de entrada -->
-                <label for="guess" class="label-moderno">
-                    <span class="label-text">INTRODUCE TU NÚMERO</span>
-                    <span class="label-subtext">Número del 1 al 100</span>
-                </label>
-                <!-- Campo de entrada para el número -->
-                <input type="number" id="guess" name="guess" min="1" max="100" required autofocus>
-                <!-- 
-                  type="number" - Solo permite números
-                  min="1" max="100" - Limita el rango de números
-                  placeholder - Texto de ejemplo
-                  required - Hace el campo obligatorio
-                  autofocus - Pone el foco automáticamente en este campo
-                -->
-            </div>
-            <!-- Botón para enviar el guess -->
-            <br>
-            <br>
-            <div id="contentBox">
-                <div id="tenth" class="buttonBox">
-                    <button type="submit">
-                        <span>A</span>
-                        <span>d</span>
-                        <span>i</span>
-                        <span>v</span>
-                        <span>i</span>
-                        <span>n</span>
-                        <span>a</span>
-                        <span>r</span>
-                    </button>
+            <div class="info-panel">
+                <div class="info-box">
+                    <div class="try-range">
+                        <h3>Intentos</h3>
+                        <p id="attemptCount">0</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="try-range">
+                        <h3>Rango</h3>
+                        <p id="rangeDisplay">1 - 100</p>
+                    </div>
                 </div>
             </div>
-        </form>
 
-        <!-- Div donde se mostrarán los resultados y pistas -->
-        <div id="result"></div>
-        <!-- Div donde se mostrará el historial de intentos -->
-        <div id="attemptsList"></div>
+            <form id="guessForm">
+                <div class="input-group">
+                    <label for="guess" class="label-moderno">
+                        <span class="label-text">INTRODUCE TU NÚMERO</span>
+                        <span class="label-subtext" id="inputSubtext">Número del 1 al 100</span>
+                    </label>
+                    <input type="number" id="guess" name="guess" min="1" max="100" required autofocus>
+                </div>
+                <br><br>
+                <div id="contentBox">
+                    <div id="tenth" class="buttonBox">
+                        <button type="submit">
+                            <span>A</span>
+                            <span>d</span>
+                            <span>i</span>
+                            <span>v</span>
+                            <span>i</span>
+                            <span>n</span>
+                            <span>a</span>
+                            <span>r</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="result"></div>
+            <div id="attemptsList"></div>
+            
+            <!-- Botón para volver a selección de dificultad -->
+            <div class="back-button">
+                <button id="backToDifficulty" type="button">Cambiar Dificultad</button>
+            </div>
+        </div>
     </div>
 
     <!-- Enlace al archivo JavaScript que contiene la lógica del juego -->
