@@ -416,111 +416,132 @@ textarea {
   color: #333;
   margin-bottom: 10px;
 }
+
 /* Añade esto al final de tu CSS existente */
 
 /* Pantallas */
 .screen {
-    display: none;
-    width: 100%;
+  display: none;
+  width: 100%;
 }
 
 .screen.active {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Tarjetas de dificultad */
 .difficulty-options {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 40px 0;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 40px 0;
 }
 
 .difficulty-card {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex: 1;
-    min-width: 200px;
-    max-width: 250px;
-    border: 3px solid transparent;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 200px;
+  max-width: 250px;
+  border: 3px solid transparent;
 }
 
 .difficulty-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    border-color: #667eea;
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border-color: #667eea;
 }
 
 .difficulty-card[data-difficulty="easy"]:hover {
-    border-color: #4CAF50;
+  border-color: #4CAF50;
 }
 
 .difficulty-card[data-difficulty="hard"]:hover {
-    border-color: #f44336;
+  border-color: #f44336;
 }
 
 .difficulty-icon {
-    font-size: 3rem;
-    margin-bottom: 15px;
+  font-size: 3rem;
+  margin-bottom: 15px;
 }
 
 .difficulty-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #2c3e50;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #2c3e50;
 }
 
 .difficulty-card p {
-    color: #7f8c8d;
-    margin-bottom: 15px;
+  color: #7f8c8d;
+  margin-bottom: 15px;
 }
 
 .difficulty-info {
-    padding-top: 15px;
-    border-top: 1px solid #ecf0f1;
+  padding-top: 15px;
+  border-top: 1px solid #ecf0f1;
 }
 
 .difficulty-info span {
-    font-size: 0.9rem;
-    color: #95a5a6;
-    font-style: italic;
+  font-size: 0.9rem;
+  color: #95a5a6;
+  font-style: italic;
 }
 
 /* Botón volver */
 .back-button {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .back-button button {
-    background: #95a5a6;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+  background: #95a5a6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .back-button button:hover {
-    background: #7f8c8d;
+  background: #7f8c8d;
 }
 
 /* Asegurar que el box sea consistente */
 .box {
-    background-color: white;
-    width: 100%;
-    max-width: 500px;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    margin: 20px;
+  background-color: white;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  margin: 20px;
+}
+
+/*Boton reinicio */
+/* Estilo del botón pequeño de reinicio */
+.reset-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: transform 0.2s ease;
+}
+
+/*animacion del botón */
+.reset-btn:hover {
+  transform: rotate(180deg);
 }

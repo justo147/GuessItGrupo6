@@ -56,16 +56,16 @@ const box = document.getElementById('box');
 const attemptsListDiv = document.getElementById('attemptsList');
 
 // Inicialización
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     resultDiv.style.display = "none";
-    
+
     // Event listeners para las tarjetas de dificultad
     difficultyCards.forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function () {
             selectDifficulty(this.dataset.difficulty);
         });
     });
-    
+
     // Event listener para el botón volver
     backToDifficultyBtn.addEventListener('click', showDifficultyScreen);
 });
@@ -73,22 +73,22 @@ document.addEventListener('DOMContentLoaded', function() {
 // Función para seleccionar dificultad
 function selectDifficulty(difficulty) {
     currentDifficulty = difficulty;
-    
+
     if (difficulty === 'easy') {
         maxNumber = 100;
     } else {
         maxNumber = 1000;
     }
-    
+
     // Actualizar la UI con el rango seleccionado
     rangeSubtitle.textContent = `Encuentra el número entre 1 y ${maxNumber}`;
     rangeDisplay.textContent = `1 - ${maxNumber}`;
     inputSubtext.textContent = `Número del 1 al ${maxNumber}`;
-    
+
     // Actualizar los atributos del input
     guessInput.max = maxNumber;
     guessInput.placeholder = `1-${maxNumber}`;
-    
+
     // Iniciar juego
     startGame();
     showGameScreen();
@@ -147,7 +147,8 @@ function evaluateGuess(num) {
     } else {
         gameOver = true;
         resultDiv.style.display = "block"; // Lo muestra SOLO al acertar
-        resultDiv.innerHTML = `🎉 ¡FELICIDADES! Adivinaste el número ${numRand}`;
+        resultDiv.innerHTML = `🎉 ¡FELICIDADES! Adivinaste el número ${numRand}
+        <br><button class="reset-btn" value="Reiniciar Juego" onclick="resetGame()">`;
         lanzarConfeti();
     }
     // Mostrar historial de intentos
@@ -184,8 +185,12 @@ form.addEventListener('submit', function (e) {
 
 // Función para reiniciar el juego
 function resetGame() {
-    resultDiv.style.display = "none";
-    // Lógica de reinicio aquí...
+    numRand;
+    count = 0;
+    gameOver = false;
+    attempts = [];
+    currentDifficulty = 'easy';
+    maxNumber = 100;
 }
 
 console.log("Número aleatorio:", numRand);
