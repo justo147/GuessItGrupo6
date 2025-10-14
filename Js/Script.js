@@ -62,7 +62,7 @@ function evaluateGuess(num) {
     attempts.push(num);
 
     if (num < numRand) {
-        box.className="error";
+        box.className = "error";
         resultDiv.innerHTML = ` El número es <strong>MAYOR</strong> que ${num}`;
     } else if (num > numRand) {
         resultDiv.innerHTML = ` El número es <strong>MENOR</strong> que ${num}`;
@@ -73,6 +73,20 @@ function evaluateGuess(num) {
         //Lanza confetti cuando se adivina el número
         lanzarConfeti();
 
+    }
+    // Mostrar historial de intentos
+    if (!gameOver && count > 2) {
+        // Toma los últimos 5 elementos del array 'attempts', los invierte para mostrar
+        // los más recientes primero, y genera un string HTML con cada intento
+        // formateado como un div con clase 'attempt-item'
+        attemptsListDiv.innerHTML = `
+                    <div class="attempts-list">
+                        <h4>Tus últimos intentos:</h4>
+                        ${attempts.slice(-5).reverse().map(a =>
+            `<div class="attempt-item">→ ${a}</div>`
+        ).join('')}
+                    </div>
+                `;
     }
 }
 

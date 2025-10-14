@@ -4,14 +4,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 /* body con animacion entrada y fondo cambiante*/
 body {
   background: linear-gradient(-45deg, #ff0080, #8000ff, #00ff80, #ff8000);
   background-size: 400% 400%;
-  animation: 
+  animation:
     gradient 15s ease infinite,
     lock-reveal 3s forwards ease-in-out;
-  
+
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -382,4 +383,17 @@ textarea {
 
   -moz-appearance: textfield;
   appearance: textfield;
+}
+
+/*Div lista de intentos*/
+.attempts-list {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #F0F4C3;
+  border-radius: 10px;
+}
+
+.attempts-list h4 {
+  color: #333;
+  margin-bottom: 10px;
 }
