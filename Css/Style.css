@@ -526,6 +526,7 @@ textarea {
   margin: 20px;
 }
 
+
 /*Boton reinicio */
 /* Estilo del botón pequeño de reinicio */
 .reset-btn {
@@ -569,22 +570,34 @@ textarea {
     50% { transform: scale(1.02); }
 }
 
-/* Mejora para el botón de reinicio */
-.reset-btn {
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-    cursor: pointer;
-    margin-top: 15px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+
+/* Ranking Simple */
+.ranking-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin: 20px 0;
 }
 
-.reset-btn:hover {
-    transform: rotate(180deg) scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+.ranking-item {
+    padding: 10px 15px;
+    margin: 8px 0;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.ranking-position {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.ranking-name {
+    font-weight: bold;
+}
+
+.ranking-score {
+    float: right;
+    font-weight: bold;
+    color: #667eea;
 }

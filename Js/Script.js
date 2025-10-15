@@ -7,6 +7,10 @@ let currentDifficulty = 'easy';
 let maxNumber = 100;
 let confettiAnimationId;
 
+// Sistema simple de jugadores
+let players = JSON.parse(localStorage.getItem('numberGuessPlayers')) || [];
+let currentPlayer = localStorage.getItem('currentPlayerName') || '';
+
 // Elementos del DOM
 const difficultyScreen = document.getElementById('difficultyScreen');
 const gameScreen = document.getElementById('gameScreen');
@@ -35,10 +39,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Event listener para el botón volver
     backToDifficultyBtn.addEventListener('click', showDifficultyScreen);
+    
+    // Agregar botones al menú principal
+    addMenuButtons();
 });
 
 // Función para seleccionar dificultad
 function selectDifficulty(difficulty) {
+    // Pedir nombre si no existe
+    if (!currentPlayer) {
+        const playerName = prompt('¿Cuál es tu nombre?');
+        if (playerName && playerName.trim() !== '') {
+            currentPlayer = playerName.trim();
+            localStorage.setItem('currentPlayerName', currentPlayer);
+            
+            // Agregar a players si no existe
+            if (!players.find(p => p.name === currentPlayer)) {
+                players.push({
+                    name: currentPlayer,
+                    games: []
+                });
+                savePlayers();
+            }
+        } else {
+            return; // Si no pone nombre, no inicia juego
+        }
+    }
+    
     currentDifficulty = difficulty;
 
     if (difficulty === 'easy') {
@@ -122,11 +149,17 @@ function evaluateGuess(num) {
         gameOver = true;
         box.className = "box success";
         resultDiv.style.display = "block";
+        
+        // Guardar partida
+        saveGame(count);
+        
         resultDiv.innerHTML = `
-            🎉 <strong>¡FELICIDADES!</strong> Adivinaste el número ${numRand}
+            🎉 <strong>¡FELICIDADES ${currentPlayer}!</strong> Adivinaste el número ${numRand}
+            <br><br>
+            <strong>Intentos:</strong> ${count}
             <br><br>
             <div style="text-align: center;">
-                <button class="reset-btn" onclick="resetGame()" title="Jugar de nuevo">↻</button>
+                <button class="reset-btn" onclick="resetGame()">↻</button>
             </div>
         `;
         lanzarConfeti();
@@ -161,12 +194,12 @@ form.addEventListener('submit', function (e) {
     guessInput.focus();
 });
 
-// Función para reiniciar el juego CORREGIDA
+// Función para reiniciar el juego
 function resetGame() {
     startGame();
 }
 
-// Función de confeti CORREGIDA (sin bucle infinito)
+// Función de confeti (sin bucle infinito)
 function lanzarConfeti() {
     // Detener cualquier animación previa
     if (confettiAnimationId) {
@@ -201,3 +234,95 @@ document.addEventListener('keydown', function (e) {
         showDifficultyScreen();
     }
 });
+
+
+
+// Función para guardar partida
+function saveGame(attempts) {
+    const player = players.find(p => p.name === currentPlayer);
+    if (player) {
+        player.games.push({
+            date: new Date().toISOString(),
+            difficulty: currentDifficulty,
+            attempts: attempts,
+            number: numRand
+        });
+        savePlayers();
+    }
+}
+
+// Función para guardar jugadores en localStorage
+function savePlayers() {
+    localStorage.setItem('numberGuessPlayers', JSON.stringify(players));
+}
+
+// Función para mostrar ranking
+function showRanking() {
+    updateRanking();
+    showScreen('rankingScreen');
+}
+
+// Función para actualizar el ranking
+function updateRanking() {
+    const rankingList = document.getElementById('rankingList');
+    
+    // Calcular ranking (menos intentos promedio = mejor)
+    const rankedPlayers = players
+        .map(player => {
+            const totalAttempts = player.games.reduce((sum, game) => sum + game.attempts, 0);
+            const avgAttempts = player.games.length > 0 ? (totalAttempts / player.games.length).toFixed(1) : '-';
+            return {
+                name: player.name,
+                games: player.games.length,
+                avgAttempts: avgAttempts
+            };
+        })
+        .filter(player => player.games > 0)
+        .sort((a, b) => a.avgAttempts - b.avgAttempts);
+
+    // Mostrar ranking
+    rankingList.innerHTML = rankedPlayers.length > 0 ? 
+        rankedPlayers.map((player, index) => `
+            <div class="ranking-item">
+                <span class="ranking-position">#${index + 1}</span>
+                <span class="ranking-name">${player.name} ${player.name === currentPlayer ? '(Tú)' : ''}</span>
+                <span class="ranking-score">${player.avgAttempts} intentos</span>
+                <br>
+                <small>${player.games} partidas</small>
+            </div>
+        `).join('') :
+        '<p style="text-align: center; color: #666;">Aún no hay partidas jugadas</p>';
+}
+
+// Función para cambiar de jugador
+function switchPlayer() {
+    if (confirm('¿Quieres cambiar de jugador?')) {
+        currentPlayer = '';
+        localStorage.removeItem('currentPlayerName');
+        showScreen('difficultyScreen');
+    }
+}
+
+// Función para mostrar pantallas
+function showScreen(screenName) {
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+    });
+    document.getElementById(screenName).classList.add('active');
+}
+
+// Función para agregar botones al menú principal
+function addMenuButtons() {
+    const menuButtons = document.createElement('div');
+    menuButtons.style.textAlign = 'center';
+    menuButtons.style.marginTop = '20px';
+    menuButtons.innerHTML = `
+        <button class="menu-btn" onclick="showRanking()" style="margin: 5px; padding: 10px 15px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">Ver Ranking</button>
+        <button class="menu-btn" onclick="switchPlayer()" style="margin: 5px; padding: 10px 15px; background: #95a5a6; color: white; border: none; border-radius: 5px; cursor: pointer;">Cambiar Jugador</button>
+    `;
+    
+    const difficultyBox = document.getElementById('difficultyBox');
+    if (difficultyBox && !difficultyBox.querySelector('.menu-buttons')) {
+        difficultyBox.appendChild(menuButtons);
+    }
+}

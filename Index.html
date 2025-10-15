@@ -2,24 +2,21 @@
 <html lang="es">
 
 <head>
-    <!-- Configuración básica del documento -->
-    <meta charset="UTF-8"> <!-- Define la codificación de caracteres -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace la página responsive -->
-    <title>Adivina el Número</title> <!-- Título que aparece en la pestaña del navegador -->
-    <link rel="stylesheet" href="Css/Style.css"> <!-- Enlaza el archivo CSS de estilos -->
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el Número</title>
+    <link rel="stylesheet" href="Css/Style.css">
 </head>
 
 <body>
-    <!--Libreria del confeti-->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-    
+
     <!-- Pantalla de Selección de Dificultad -->
     <div id="difficultyScreen" class="screen active">
         <div id="difficultyBox" class="box">
             <h1>Selecciona la Dificultad</h1>
             <p class="subtitle">Elige el modo de juego</p>
-            
+
             <div class="difficulty-options">
                 <div class="difficulty-card" data-difficulty="easy">
                     <div class="difficulty-icon">🎯</div>
@@ -29,7 +26,7 @@
                         <span>Perfecto para empezar</span>
                     </div>
                 </div>
-                
+
                 <div class="difficulty-card" data-difficulty="hard">
                     <div class="difficulty-icon">🔥</div>
                     <h3>Difícil</h3>
@@ -41,8 +38,8 @@
             </div>
         </div>
     </div>
-    
-     <!-- Juego Principal (oculto inicialmente) -->
+
+    <!-- Juego Principal (oculto inicialmente) -->
     <div id="gameScreen" class="screen">
         <div id="box" class="box">
             <h1>Adivina el Número</h1>
@@ -69,7 +66,7 @@
                         <span class="label-text">INTRODUCE TU NÚMERO</span>
                         <span class="label-subtext" id="inputSubtext">Número del 1 al 100</span>
                     </label>
-                    <input type="number" id="guess" name="guess" min="1"  required autofocus>
+                    <input type="number" id="guess" name="guess" min="1" required autofocus>
                 </div>
                 <br><br>
                 <div id="contentBox">
@@ -90,16 +87,33 @@
 
             <div id="result"></div>
             <div id="attemptsList"></div>
-            
-            <!-- Botón para volver a selección de dificultad -->
+
+            <!-- Botones en gameScreen -->
             <div class="back-button">
                 <button id="backToDifficulty" type="button">Cambiar Dificultad</button>
+                <br>
+                <br>
+                <button onclick="showRanking()">Ver Ranking</button>
             </div>
         </div>
     </div>
 
-    <!-- Enlace al archivo JavaScript que contiene la lógica del juego -->
-    <!-- Se coloca al final para que cargue después del HTML -->
+    <!-- Pantalla de Ranking -->
+    <div id="rankingScreen" class="screen">
+        <div class="box">
+            <h1>🏆 Ranking</h1>
+            <p class="subtitle">Mejores jugadores por promedio de intentos</p>
+
+            <div id="rankingList" class="ranking-list">
+                <!-- Los rankings se cargarán aquí dinámicamente -->
+            </div>
+
+            <div class="back-button">
+                <button onclick="showScreen('difficultyScreen')">Volver al Menú</button>
+            </div>
+        </div>
+    </div>
+
     <script src="Js/Script.js"></script>
 </body>
 
