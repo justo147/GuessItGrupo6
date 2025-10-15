@@ -1,38 +1,3 @@
-/*Funcionalidad Simple para ver como funciona
-let num;
-let guess = false;
-let numRand = random(1, 100);
-let count = 0;
-do {
-    num = parseInt(prompt("Escribe un numero"));
-    if (num < numRand) {
-        alert("El numero a adivinar es mayor");
-    } else if (num > numRand) {
-        alert("El numero a adivinar es menor");
-    } else {
-        alert("Felicidades has adivinado el numero");
-        guess = true;
-    }
-    count++;
-} while (guess != true);
-
-if (count <= 5) {
-    document.writeln("Excelente, lo has adivinado en " + count + " intentos");
-} else if (count > 5 && count <= 10) {
-    document.writeln("Bien, lo has adivinado en " + count + " intentos");
-} else {
-    document.writeln("Regular, lo has adivinado en " + count + " intentos");
-}
-
-//Funcion para calcular el numero random entero
-function random(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-} */
-
-
-
-
-//Empezamos el codigo utilizando formularios y botones 
 // Variables globales
 let numRand;
 let count = 0;
@@ -40,6 +5,8 @@ let gameOver = false;
 let attempts = [];
 let currentDifficulty = 'easy';
 let maxNumber = 100;
+let confettiAnimationId;
+
 // Elementos del DOM
 const difficultyScreen = document.getElementById('difficultyScreen');
 const gameScreen = document.getElementById('gameScreen');
@@ -86,6 +53,7 @@ function selectDifficulty(difficulty) {
     inputSubtext.textContent = `Número del 1 al ${maxNumber}`;
 
     // Actualizar los atributos del input
+    guessInput.min = 1;
     guessInput.max = maxNumber;
     guessInput.placeholder = `1-${maxNumber}`;
 
@@ -106,6 +74,13 @@ function startGame() {
     attemptsListDiv.innerHTML = '';
     guessInput.value = '';
     box.className = "box";
+    
+    // Detener confeti si estaba activo
+    if (confettiAnimationId) {
+        cancelAnimationFrame(confettiAnimationId);
+        confettiAnimationId = null;
+    }
+    
     console.log("Número aleatorio:", numRand);
 }
 
@@ -113,6 +88,7 @@ function startGame() {
 function showGameScreen() {
     difficultyScreen.classList.remove('active');
     gameScreen.classList.add('active');
+    guessInput.focus();
 }
 
 // Función para mostrar pantalla de dificultad
@@ -121,14 +97,12 @@ function showDifficultyScreen() {
     difficultyScreen.classList.add('active');
 }
 
-
 // Función para generar número aleatorio
 function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // Función principal del juego
-//Transladamos la logica comentada arriba utilizando los elementos del html para devolver lo que queramos
 function evaluateGuess(num) {
     if (gameOver) return;
 
@@ -137,36 +111,39 @@ function evaluateGuess(num) {
     attempts.push(num);
 
     if (num < numRand) {
-        box.className = "error";
-        resultDiv.style.display = "block"; // Muestra el cuadro
+        box.className = "box error";
+        resultDiv.style.display = "block";
         resultDiv.innerHTML = `El número es <strong>MAYOR</strong> que ${num}`;
     } else if (num > numRand) {
-        box.className = "error";
-        resultDiv.style.display = "block"; // Muestra el cuadro
+        box.className = "box error";
+        resultDiv.style.display = "block";
         resultDiv.innerHTML = `El número es <strong>MENOR</strong> que ${num}`;
     } else {
         gameOver = true;
-        resultDiv.style.display = "block"; // Lo muestra SOLO al acertar
-        resultDiv.innerHTML = `🎉 ¡FELICIDADES! Adivinaste el número ${numRand}
-        <br><button class="reset-btn" value="Reiniciar Juego" onclick="resetGame()">`;
+        box.className = "box success";
+        resultDiv.style.display = "block";
+        resultDiv.innerHTML = `
+            🎉 <strong>¡FELICIDADES!</strong> Adivinaste el número ${numRand}
+            <br><br>
+            <div style="text-align: center;">
+                <button class="reset-btn" onclick="resetGame()" title="Jugar de nuevo">↻</button>
+            </div>
+        `;
         lanzarConfeti();
     }
+
     // Mostrar historial de intentos
     if (!gameOver && count > 2) {
-        // Toma los últimos 5 elementos del array 'attempts', los invierte para mostrar
-        // los más recientes primero, y genera un string HTML con cada intento
-        // formateado como un div con clase 'attempt-item'
         attemptsListDiv.innerHTML = `
-                    <div class="attempts-list">
-                        <h4>Tus últimos intentos:</h4>
-                        ${attempts.slice(-5).reverse().map(a =>
-            `<div class="attempt-item">→ ${a}</div>`
-        ).join('')}
-                    </div>
-                `;
+            <div class="attempts-list">
+                <h4>Tus últimos intentos:</h4>
+                ${attempts.slice(-5).reverse().map(a =>
+                    `<div class="attempt-item">→ ${a}</div>`
+                ).join('')}
+            </div>
+        `;
     }
 }
-
 
 // Event listeners
 form.addEventListener('submit', function (e) {
@@ -175,33 +152,52 @@ form.addEventListener('submit', function (e) {
 
     if (isNaN(num) || num < 1 || num > maxNumber) {
         resultDiv.style.display = "block";
-        resultDiv.textContent = `Por favor, introduce un número válido entre 1 y ${maxNumber}`;
+        resultDiv.innerHTML = `❌ Por favor, introduce un número válido entre 1 y ${maxNumber}`;
         return;
     }
 
     evaluateGuess(num);
     guessInput.value = '';
+    guessInput.focus();
 });
 
-// Función para reiniciar el juego
+// Función para reiniciar el juego CORREGIDA
 function resetGame() {
-    numRand;
-    count = 0;
-    gameOver = false;
-    attempts = [];
-    currentDifficulty = 'easy';
-    maxNumber = 100;
+    startGame();
 }
 
-console.log("Número aleatorio:", numRand);
-
+// Función de confeti CORREGIDA (sin bucle infinito)
 function lanzarConfeti() {
+    // Detener cualquier animación previa
+    if (confettiAnimationId) {
+        cancelAnimationFrame(confettiAnimationId);
+    }
 
-    confetti({
-        particleCount: 3,
-        spread: 30,
-        origin: { y: 0.6 }
-    });
-    requestAnimationFrame(lanzarConfeti);
+    // Lanzar confeti por 3 segundos
+    const duration = 3000;
+    const end = Date.now() + duration;
 
+    function frame() {
+        confetti({
+            particleCount: 5,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#ff0080', '#8000ff', '#00ff80', '#ff8000', '#667eea']
+        });
+
+        if (Date.now() < end) {
+            confettiAnimationId = requestAnimationFrame(frame);
+        } else {
+            confettiAnimationId = null;
+        }
+    }
+
+    frame();
 }
+
+// Permitir reinicio con la tecla ESC
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        showDifficultyScreen();
+    }
+});
