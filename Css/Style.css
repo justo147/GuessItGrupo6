@@ -26,6 +26,7 @@ body {
   mask-size: 50px;
 }
 
+/*Animación gradiente que mueve el fondo gradiente */
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -53,7 +54,7 @@ body {
   }
 }
 
-/* Contenedor principal */
+/* Caja principal centrada, fondo blanco, bordes redondeados y una sombra agradable */
 #box {
   background-color: white;
   width: 100%;
@@ -63,7 +64,7 @@ body {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
-
+/*Cajas que informativas de intentos y rango */
 .info-panel {
   display: flex;
   /* Usa Flexbox para colocar los elementos hijos en fila */
@@ -102,11 +103,7 @@ body {
 
 .info-box {
   flex: 1 1 150px;
-  /* 
-                                   flex-grow: 1  → permite crecer si hay espacio
-                                   flex-shrink: 1 → permite reducir su tamaño si falta espacio
-                                   flex-basis: 150px → ancho base o mínimo sugerido
-                                */
+  /* flex-grow: 1  → permite crecer si hay espacio flex-shrink: 1 → permite reducir su tamaño si falta espacio flex-basis: 150px → ancho base o mínimo sugerido */
   max-width: 200px;
   /* Ancho máximo de cada caja */
 }
@@ -119,7 +116,7 @@ body {
   justify-content: space-around;
   flex-wrap: wrap;
 }
-
+/*Contenedor individual del botón */
 .buttonBox {
   margin: 0 20px 40px;
   position: relative;
@@ -127,7 +124,7 @@ body {
   min-width: 150px;
   flex: 20%;
 }
-
+/*Botón principal*/
 button {
   width: 100%;
   height: 80px;
@@ -144,6 +141,7 @@ button {
   cursor: pointer;
 }
 
+/* Animaciones personalizadas para las letras del botón “adivinar” */
 #tenth>button {
   letter-spacing: 1px;
 }
@@ -178,20 +176,20 @@ button {
 
 #tenth:hover span:nth-of-type(7) {
   animation: n1 .5s;
-  /* Ahora usa n1 */
+  
 }
 
 #tenth:hover span:nth-of-type(8) {
   animation: a2 .5s;
-  /* Ahora usa a2 */
+  
 }
 
 #tenth:hover span:nth-of-type(9) {
   animation: r1 .5s;
-  /* Ahora usa r1 */
+  
 }
 
-/* CORREGIDO - nombres únicos para cada keyframe */
+/*Animaciones personalizadas de movimiento para las letras */
 @keyframes a1 {
   0% {
     transform: translate(0, 0);
@@ -338,6 +336,7 @@ button {
   }
 }
 
+/*Ajuste para pantallas*/
 @media(max-width: 1200px) {
   #contentBox {
     width: 100%;
@@ -385,7 +384,7 @@ textarea {
   appearance: textfield;
 }
 
-
+/*Caja de resultado*/
 #result {
   display: none;
   /* Oculto al inicio */
@@ -404,7 +403,7 @@ textarea {
 
 
 
-/*Div lista de intentos*/
+/* lista de intentos del jugador*/
 .attempts-list {
   margin-top: 20px;
   padding: 15px;
@@ -417,7 +416,7 @@ textarea {
   margin-bottom: 10px;
 }
 
-/* Añade esto al final de tu CSS existente */
+
 
 /* Pantallas */
 .screen {
@@ -440,6 +439,7 @@ textarea {
   margin: 40px 0;
 }
 
+/*Personalización tarjeta de dificultad*/
 .difficulty-card {
   background: white;
   padding: 30px;
@@ -495,7 +495,7 @@ textarea {
   font-style: italic;
 }
 
-/* Botón volver */
+/* Botón para volver */
 .back-button {
   text-align: center;
   margin-top: 20px;
@@ -572,10 +572,10 @@ textarea {
 
 
 
-/* Ranking Simple */
+/*  Ranking de jugadores (lista con nombres y puntajes) */
 .ranking-list {
     max-height: 400px;
-    overflow-y: auto;
+    overflow-y: auto; /* permite scroll si hay muchos */
     margin: 20px 0;
 }
 
@@ -584,7 +584,7 @@ textarea {
     margin: 8px 0;
     background: #f8f9fa;
     border-radius: 8px;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid #667eea; /* línea morada lateral */
 }
 
 .ranking-position {

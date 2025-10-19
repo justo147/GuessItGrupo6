@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <!--Biblioteca confeti-->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
     <!-- Pantalla de Selección de Dificultad -->
@@ -17,6 +18,7 @@
             <h1>Selecciona la Dificultad</h1>
             <p class="subtitle">Elige el modo de juego</p>
 
+            <!--Opciones de dificultad-->
             <div class="difficulty-options">
                 <div class="difficulty-card" data-difficulty="easy">
                     <div class="difficulty-icon">🎯</div>
@@ -27,6 +29,7 @@
                     </div>
                 </div>
 
+                <!--Modo difícil-->
                 <div class="difficulty-card" data-difficulty="hard">
                     <div class="difficulty-icon">🔥</div>
                     <h3>Difícil</h3>
@@ -39,12 +42,14 @@
         </div>
     </div>
 
+
     <!-- Juego Principal (oculto inicialmente) -->
     <div id="gameScreen" class="screen">
         <div id="box" class="box">
             <h1>Adivina el Número</h1>
             <p class="subtitle" id="rangeSubtitle">Encuentra el número entre 1 y 100</p>
 
+            <!--Panel con información del juego-->
             <div class="info-panel">
                 <div class="info-box">
                     <div class="try-range">
@@ -59,7 +64,7 @@
                     </div>
                 </div>
             </div>
-
+            <!--Muestra el rango actual-->
             <form id="guessForm">
                 <div class="input-group">
                     <label for="guess" class="label-moderno">
@@ -69,6 +74,7 @@
                     <input type="number" id="guess" name="guess" min="1" required autofocus>
                 </div>
                 <br><br>
+                <!--Botón adivinar-->
                 <div id="contentBox">
                     <div id="tenth" class="buttonBox">
                         <button type="submit">
